@@ -1,0 +1,6 @@
+# https://github.com/account/applications
+
+github:
+  client: <CLIENT>
+  secret: <SECRET>
+
