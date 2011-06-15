@@ -6,7 +6,7 @@ gem "compass"
 gem "haml-rails"
 gem "pg"
 gem "jquery-rails"
-
+gem "omniauth", '~> 0.2.5'
 
 group :test do
   gem "capybara"
