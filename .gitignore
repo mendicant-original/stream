@@ -5,4 +5,5 @@ tmp/
 config/database.yml
 .idea/*
 .rvmrc
+config/secret_token.rb
 
