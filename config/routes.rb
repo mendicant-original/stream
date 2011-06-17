@@ -1,11 +1,5 @@
 Flow::Application.routes.draw do
 
-  get "articles/index"
-
-  get "articles/new"
-
-  get "articles/show"
-
   root :to => 'articles#index'
 
   match '/auth/:provider/callback',      :to => 'sessions#create'
