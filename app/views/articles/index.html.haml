@@ -1,25 +1,16 @@
-%h1 Listing articles
-
-%table
-  %tr
-    %th User
-    %th Title
-    %th Body
-    %th Tags
-    - if signed_in?
-      %th
-      %th
-
+%ul
   - @articles.each do |article|
-    = content_tag_for :tr, article do
-      %td= article.user.try(:name)
-      %td= link_to article.title, article.url
-      %td= article.body
-      %td= article.tags
-      - if signed_in? && article_editable_by?(article, current_user)
-        %td= link_to 'edit', edit_article_path(article)
-        %td= link_to 'destroy', article, :confirm => 'Are you sure?', :method => :delete
-
-%br
-
-= link_to 'New Article', new_article_path
+    = content_tag_for :li, article do
+      %h2
+        = link_to article.title, article.url
+        %small= url_host(article.url)
+      %p= article.body
+      %div.user_info
+        by
+        = article.user.try(:name)
+        %br
+        = l article.created_at.to_date, :format => :long
+        %br
+        - if signed_in? && article_editable_by?(article, current_user)
+          = link_to 'edit', edit_article_path(article)
+          = link_to 'destroy', article, :confirm => 'Are you sure?', :method => :delete

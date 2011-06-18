@@ -19,7 +19,6 @@ class ArticlesPostTest < ActionDispatch::IntegrationTest
     assert has_link?("Rails 3 released",
                      :href => "http://weblog.rubyonrails.org/rails-3-released")
     assert has_content?("Rails 3 was released yesterday! Yay!")
-    assert has_content?("ruby, rails, new release")
   end
 
   test "attempt to post an article with invalid attributes" do

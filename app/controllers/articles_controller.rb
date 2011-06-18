@@ -3,7 +3,7 @@ class ArticlesController < ApplicationController
   before_filter :find_article, :authorized_users_only, :only => [:edit, :update, :destroy]
 
   def index
-    @articles = Article.all
+    @articles = Article.order("id desc")
   end
 
   def new

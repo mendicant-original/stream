@@ -48,6 +48,5 @@ class ArticlesDestroyTest < ActionDispatch::IntegrationTest
     assert has_content?("Article was successfully destroyed.")
     assert has_no_content?("Rails 3 is coming!")
     assert has_css?(".article", :count => 1)
-    assert has_css?("h1", "Edit article")
   end
 end
