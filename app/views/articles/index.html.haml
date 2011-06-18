@@ -16,7 +16,7 @@
       %td= link_to article.title, article.url
       %td= article.body
       %td= article.tags
-      - if signed_in? && article.user == current_user
+      - if signed_in? && article_editable_by?(article, current_user)
         %td= link_to 'edit', edit_article_path(article)
         %td= link_to 'destroy', article, :confirm => 'Are you sure?', :method => :delete
 

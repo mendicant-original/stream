@@ -3,3 +3,7 @@ john:
 
 mary:
   name: Mary
+
+admin:
+  name: Admin
+  admin: true

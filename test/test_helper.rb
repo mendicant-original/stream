@@ -12,6 +12,10 @@ class ActionDispatch::IntegrationTest
     user
   end
 
+  def sign_admin_in(admin=users(:admin))
+    sign_user_in(admin)
+  end
+
   def within(scope)
     scope = '#' << ActionController::RecordIdentifier.dom_id(scope) if scope.is_a?(ActiveRecord::Base)
     super
