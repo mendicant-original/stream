@@ -1,43 +1,40 @@
 class ArticlesController < ApplicationController
-  before_filter :user_required, :only => [:new, :create]
-  before_filter :find_article, :authorized_users_only, :only => [:edit, :update, :destroy]
-  before_filter :find_article, :only => [:show]
-  
   def index
-    @articles = Article.order("created_at").all
+    @articles = Article.all
   end
 
-  def show
-  end
-  
   def new
-    @article = Article.new(:author => current_user) 
+    @article = Article.new
   end
 
-  def create
-  end
-  
   def edit
     @article = Article.find(params[:id])
   end
 
+  def create
+    @article = Article.new(params[:article])
+
+    if @article.save
+      redirect_to(root_path, :notice => 'Article was successfully created.')
+    else
+      render :action => "new"
+    end
+  end
+
   def update
+    @article = Article.find(params[:id])
+
+    if @article.update_attributes(params[:article])
+      redirect_to(root_path, :notice => 'Article was successfully updated.')
+    else
+      render :action => "edit"
+    end
   end
 
   def destroy
-  end
-
-  private
-  
-  def authorized_users_only
-    unless current_user && (current_user.admin || current_user == @article.author)
-      flash[:error] = "You can't edit this article!"
-      redirect_to root_path
-    end
-  end
-  
-  def find_article
     @article = Article.find(params[:id])
-  end
+    @article.destroy
 
+    redirect_to(root_path)
+  end
 end
