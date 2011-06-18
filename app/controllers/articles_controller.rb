@@ -3,7 +3,7 @@ class ArticlesController < ApplicationController
   before_filter :find_article, :authorized_users_only, :only => [:edit, :update, :destroy]
 
   def index
-    @articles = Article.order("id desc")
+    @articles = Article.includes(:author).order("id desc")
   end
 
   def new
@@ -47,7 +47,7 @@ class ArticlesController < ApplicationController
 
   # TODO: review after integrating models.
   def article_editable_by?(article, user)
-    user.admin? || user == article.user
+    user.admin? || user == article.author
   end
   helper_method :article_editable_by?
 

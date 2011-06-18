@@ -12,7 +12,7 @@
     <%= link_to "RbMU Flow", root_path %>
     <nav>
       <ul>
-        <% if current_user %>
+        <% if signed_in? %>
           <li><%= link_to "Post article", new_article_path %></li>
         <% end %>
       </ul>

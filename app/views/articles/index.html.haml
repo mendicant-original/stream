@@ -7,7 +7,7 @@
       %p= article.body
       %div.user_info
         by
-        = article.user.try(:name)
+        = article.author.try(:name)
         %br
         = l article.created_at.to_date, :format => :long
         %br
