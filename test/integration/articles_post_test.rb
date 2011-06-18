@@ -40,6 +40,18 @@ class ArticlesPostTest < ActionDispatch::IntegrationTest
     assert has_content?("Body can't be blank")
   end
 
+  test "attempt to post an article when not signed in" do
+    # TODO: remove after integrating authentication
+    User.delete_all
+
+    visit root_path
+    assert !has_link?("Post article")
+
+    visit new_article_path
+    assert_equal login_path, current_path
+    assert has_content?("Please sign in to continue!")
+  end
+
   protected
 
   def sign_user_in

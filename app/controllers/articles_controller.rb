@@ -1,10 +1,12 @@
 class ArticlesController < ApplicationController
+  before_filter :user_required, :only => [:new, :create]
+
   def index
     @articles = Article.all
   end
 
   def new
-    @article = Article.new
+    @article = current_user.articles.build
   end
 
   def edit
@@ -12,7 +14,7 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    @article = Article.new(params[:article])
+    @article = current_user.articles.build(params[:article])
 
     if @article.save
       redirect_to(root_path, :notice => 'Article was successfully created.')
@@ -36,5 +38,12 @@ class ArticlesController < ApplicationController
     @article.destroy
 
     redirect_to(root_path)
+  end
+
+  private
+
+  # TODO: remove this stub method after integrate entire auth.
+  def current_user
+    @current_user ||= User.last
   end
 end
