@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   def authenticate_admin_user!
     unless current_user.try(:admin)
-      flash[:error] = "You are not authorize to view this area"
+      flash[:alert] = "You are not authorize to view this area"
       redirect_to root_path
     end
   end
@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
 
   def user_required
     unless signed_in?
-      flash[:error] = "Please sign in to continue!"
+      flash[:alert] = "Please sign in to continue!"
       store_location
       redirect_to login_path
     end
