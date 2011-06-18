@@ -51,11 +51,4 @@ class ArticlesPostTest < ActionDispatch::IntegrationTest
     assert_equal sign_in_path, current_path
     assert has_content?("Please sign in to continue!")
   end
-
-  protected
-
-  def sign_user_in
-    # Sign in stub method.
-    visit root_path
-  end
 end

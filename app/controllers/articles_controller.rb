@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_filter :user_required, :only => [:new, :create]
+  before_filter :user_required, :only => [:new, :create, :edit, :update]
 
   def index
     @articles = Article.all

@@ -5,6 +5,17 @@ require 'capybara/rails'
 
 class ActionDispatch::IntegrationTest
   include Capybara::DSL
+
+  def sign_user_in
+    # Sign in stub method.
+    visit root_path
+    users(:john)
+  end
+
+  def within(scope)
+    scope = '#' << ActionController::RecordIdentifier.dom_id(scope) if scope.is_a?(ActiveRecord::Base)
+    super
+  end
 end
 
 class ActiveSupport::TestCase

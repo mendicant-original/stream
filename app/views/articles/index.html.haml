@@ -6,19 +6,19 @@
     %th Title
     %th Body
     %th Tags
-    %th
-    %th
-    %th
+    - if signed_in?
+      %th
+      %th
 
   - @articles.each do |article|
-    %tr
+    = content_tag_for :tr, article do
       %td= article.user
       %td= link_to article.title, article.url
       %td= article.body
       %td= article.tags
-      %td= link_to 'Show', article
-      %td= link_to 'Edit', edit_article_path(article)
-      %td= link_to 'Destroy', article, :confirm => 'Are you sure?', :method => :delete
+      - if signed_in?
+        %td= link_to 'edit', edit_article_path(article)
+        %td= link_to 'destroy', article, :confirm => 'Are you sure?', :method => :delete
 
 %br
 
