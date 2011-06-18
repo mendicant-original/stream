@@ -19,7 +19,7 @@
     </nav>
   </header>
 
-  <%= content_tag :p, notice, :id => "notice" if notice %>
+  <%= render_flash_messages %>
 
   <section>
     <%= yield %>

@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
   before_filter :user_required, :only => [:new, :create, :edit, :update]
+  before_filter :find_article, :authorized_users_only, :only => [:edit, :update]
 
   def index
     @articles = Article.all
@@ -10,7 +11,6 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-    @article = Article.find(params[:id])
   end
 
   def create
@@ -24,8 +24,6 @@ class ArticlesController < ApplicationController
   end
 
   def update
-    @article = Article.find(params[:id])
-
     if @article.update_attributes(params[:article])
       redirect_to(root_path, :notice => 'Article was successfully updated.')
     else
@@ -42,8 +40,19 @@ class ArticlesController < ApplicationController
 
   private
 
+  def authorized_users_only
+    if current_user != @article.user
+      redirect_to root_path,
+        :alert => "You are not authorized to edit other user's articles!"
+    end
+  end
+
   # TODO: remove this stub method after integrate entire auth.
   def current_user
     @current_user ||= User.last
+  end
+
+  def find_article
+    @article = Article.find(params[:id])
   end
 end

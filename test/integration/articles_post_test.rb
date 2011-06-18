@@ -31,7 +31,7 @@ class ArticlesPostTest < ActionDispatch::IntegrationTest
     click_button "Post"
 
     assert_equal articles_path, current_path
-    assert !has_content?("Article was successfully created.")
+    assert has_no_content?("Article was successfully created.")
     assert has_field?("Title", :with => "R3")
     assert has_field?("Url", :with => "test@example.com")
     assert has_content?("3 errors prohibited this article from being saved")
@@ -45,7 +45,7 @@ class ArticlesPostTest < ActionDispatch::IntegrationTest
     User.delete_all
 
     visit root_path
-    assert !has_link?("Post article")
+    assert has_no_link?("Post article")
 
     visit new_article_path
     assert_equal sign_in_path, current_path

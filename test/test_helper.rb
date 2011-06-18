@@ -6,10 +6,10 @@ require 'capybara/rails'
 class ActionDispatch::IntegrationTest
   include Capybara::DSL
 
-  def sign_user_in
+  def sign_user_in(user=users(:john))
     # Sign in stub method.
     visit root_path
-    users(:john)
+    user
   end
 
   def within(scope)
