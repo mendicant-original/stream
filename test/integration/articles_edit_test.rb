@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ArticlesPostTest < ActionDispatch::IntegrationTest
+class ArticlesEditTest < ActionDispatch::IntegrationTest
   test "edit an article I own" do
     sign_user_in
     edit_article

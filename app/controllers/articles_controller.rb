@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
-  before_filter :user_required, :only => [:new, :create, :edit, :update]
-  before_filter :find_article, :authorized_users_only, :only => [:edit, :update]
+  before_filter :user_required, :only => [:new, :create, :edit, :update, :destroy]
+  before_filter :find_article, :authorized_users_only, :only => [:edit, :update, :destroy]
 
   def index
     @articles = Article.all
@@ -32,10 +32,8 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    @article = Article.find(params[:id])
     @article.destroy
-
-    redirect_to(root_path)
+    redirect_to(root_path, :notice => 'Article was successfully destroyed.')
   end
 
   private
