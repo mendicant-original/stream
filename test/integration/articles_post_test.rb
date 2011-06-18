@@ -6,7 +6,7 @@ class ArticlesPostTest < ActionDispatch::IntegrationTest
     click_link "Post article"
 
     assert_equal new_article_path, current_path
-    assert has_css?("h1", "Post an article")
+    assert has_css?("h1", :text => "Post an article")
 
     fill_in "Title", :with => "Rails 3 released"
     fill_in "Url", :with => "http://weblog.rubyonrails.org/rails-3-released"

@@ -75,7 +75,7 @@ class ArticlesEditTest < ActionDispatch::IntegrationTest
     end
 
     assert_equal edit_article_path(article), current_path
-    assert has_css?("h1", "Edit article")
+    assert has_css?("h1", :text => "Edit article")
 
     fill_in "Title", :with => "Rails 3 released"
     fill_in "Url", :with => "http://weblog.rubyonrails.org/rails-3-released"
