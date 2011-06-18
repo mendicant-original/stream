@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
     unless signed_in?
       flash[:alert] = "Please sign in to continue!"
       store_location
-      redirect_to login_path
+      redirect_to sign_in_path
     end
   end
 

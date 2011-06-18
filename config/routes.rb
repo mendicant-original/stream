@@ -1,9 +1,9 @@
 Flow::Application.routes.draw do
   root :to => 'articles#index'
 
-  match '/auth/:provider/callback',      :to => 'sessions#create'
-  match '/logout' => 'sessions#destroy', :as => 'logout'
-  match '/login' => 'sessions#new',      :as => 'login'
+  match '/auth/:provider/callback' => 'sessions#create'
+  match '/sign_out' => 'sessions#destroy', :as => 'sign_out'
+  match '/sign_in'  => 'sessions#new',     :as => 'sign_in'
 
   resources :articles
   resources :users

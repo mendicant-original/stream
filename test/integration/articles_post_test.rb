@@ -48,7 +48,7 @@ class ArticlesPostTest < ActionDispatch::IntegrationTest
     assert !has_link?("Post article")
 
     visit new_article_path
-    assert_equal login_path, current_path
+    assert_equal sign_in_path, current_path
     assert has_content?("Please sign in to continue!")
   end
 
