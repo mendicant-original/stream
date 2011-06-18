@@ -5,6 +5,6 @@ Flow::Application.routes.draw do
   match '/sign_out' => 'sessions#destroy', :as => 'sign_out'
   match '/sign_in'  => 'sessions#new',     :as => 'sign_in'
 
-  resources :articles
+  resources :articles, :except => :show
   resources :users
 end
