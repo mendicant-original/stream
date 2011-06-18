@@ -22,6 +22,24 @@ class ArticlesPostTest < ActionDispatch::IntegrationTest
     assert has_content?("ruby, rails, new release")
   end
 
+  test "attempt to post an article with invalid attributes" do
+    sign_user_in
+    click_link "Post article"
+
+    fill_in "Title", :with => "R3"
+    fill_in "Url", :with => "test@example.com"
+    click_button "Post"
+
+    assert_equal articles_path, current_path
+    assert !has_content?("Article was successfully created.")
+    assert has_field?("Title", :with => "R3")
+    assert has_field?("Url", :with => "test@example.com")
+    assert has_content?("3 errors prohibited this article from being saved")
+    assert has_content?("Title is too short (minimum is 3 characters)")
+    assert has_content?("Url is invalid")
+    assert has_content?("Body can't be blank")
+  end
+
   protected
 
   def sign_user_in
