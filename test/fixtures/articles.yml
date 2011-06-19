@@ -3,11 +3,9 @@ john_article:
   title: "Rails 3"
   url: "http://weblog.rubyonrails.org"
   body: "Rails 3 is coming!"
-  tags: "ruby, rails"
 
 mary_article:
   author: mary
   title: "Java rocks!"
   url: "http://java.com"
   body: "Java enterprisey rocks."
-  tags: "java"

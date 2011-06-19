@@ -21,8 +21,8 @@
       You can use Markdown to style your content.
       %small <a href="http://daringfireball.net/projects/markdown/syntax" target="blank" title="Markdown syntax docs">Learn more about Markdown</a>
   .field
-    = f.label :tags
-    = f.text_field :tags
+    = f.label :tag_list, "Tags"
+    = f.text_field :tag_list
     %span.hint Add some tags to make finding your article easier.
   .actions
     = f.submit 'Post!'
