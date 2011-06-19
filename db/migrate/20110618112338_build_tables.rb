@@ -9,7 +9,6 @@ class BuildTables < ActiveRecord::Migration
     end
 
     create_table "tags" do |t|
-      t.integer "id"
       t.string  "name"
 
       t.timestamps
@@ -18,7 +17,6 @@ class BuildTables < ActiveRecord::Migration
     create_table "articles" do |t|
       t.belongs_to :author, :class => "User"
       
-      t.integer "id"
       t.boolean "official"
       t.string  "url"
       t.string  "title"
@@ -29,8 +27,6 @@ class BuildTables < ActiveRecord::Migration
     end
 
     create_table "taggings" do |t|
-      #t.integer "tag_id"
-      #t.integer "article_id"
       t.belongs_to :tag
       t.belongs_to :article
 
@@ -38,8 +34,7 @@ class BuildTables < ActiveRecord::Migration
     end
 
     create_table "users" do |t|
-      t.integer "id"
-      t.boolean "admin"
+      t.boolean "admin", :default => false
       t.string  "name"
       t.string  "github"
       t.string  "email"
@@ -48,8 +43,6 @@ class BuildTables < ActiveRecord::Migration
       t.text    "about"
 
       t.timestamps
-      #has_many :articles
-      #has_many :authorizations
     end
   end
 
