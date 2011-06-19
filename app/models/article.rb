@@ -1,6 +1,6 @@
 class Article < ActiveRecord::Base
-  belongs_to :author, :class => "User" 
+  belongs_to :author, :class_name => "User"
 
-  has_many :tagging
-  has_many :tag, :through => :tagging
+  has_many :taggings
+  has_many :tags, :through => :taggings
 end
