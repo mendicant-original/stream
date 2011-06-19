@@ -6,4 +6,5 @@ config/database.yml
 .idea/*
 .rvmrc
 config/secret_token.rb
+config/omniauth.yml
 
