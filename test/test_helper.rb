@@ -8,19 +8,15 @@ class ActionDispatch::IntegrationTest
   include Capybara::DSL
   include Support::Integration
 
-  # TODO: remove when integrating entire auth.
-  teardown { ApplicationController.current_user_signed_in = nil }
-end
-
-# TODO: hack for setting current user, remove when integrating entire auth.
-class ApplicationController < ActionController::Base
-  @@current_user_signed_in = nil
-
-  def self.current_user_signed_in=(user)
-    @@current_user_signed_in = user
+  setup do
+    OmniAuth.config.test_mode = true
+    OmniAuth.config.mock_auth[:github] = {
+      'provider' => 'github',
+      'uid' => '12345',
+      'user_info' => { 'nickname' => 'flow user' }
+    }
   end
 
-  def current_user
-    @@current_user_signed_in
-  end
+  teardown { Capybara.reset_sessions! } 
 end
+

@@ -66,9 +66,8 @@ module Support
       within(scope) { click_link(text) }
     end
 
-    # TODO: Stub current user using Omniauth and remove ApplicationController hack.
     def sign_user_in(user=Factory(:user))
-      ApplicationController.current_user_signed_in = user
+      visit sign_in_path
       visit root_path
       user
     end
