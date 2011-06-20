@@ -39,17 +39,11 @@ class ArticlesController < ApplicationController
   private
 
   def authorized_users_only
-    unless article_editable_by?(@article, current_user)
+    unless @article.editable_by?(current_user)
       redirect_to root_path,
         :alert => "You are not authorized to edit other user's articles!"
     end
   end
-
-  # TODO: review after integrating models.
-  def article_editable_by?(article, user)
-    user.admin? || user == article.author
-  end
-  helper_method :article_editable_by?
 
   # TODO: remove this stub method after integrate entire auth.
   def current_user

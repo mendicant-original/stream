@@ -11,6 +11,6 @@
         %br
         = l article.created_at.to_date, :format => :long
         %br
-        - if signed_in? && article_editable_by?(article, current_user)
+        - if signed_in? && article.editable_by?(current_user)
           = link_to 'edit', edit_article_path(article)
           = link_to 'destroy', article, :confirm => 'Are you sure?', :method => :delete

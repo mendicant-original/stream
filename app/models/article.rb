@@ -3,4 +3,8 @@ class Article < ActiveRecord::Base
 
   has_many :taggings
   has_many :tags, :through => :taggings
+
+  def editable_by?(user)
+    user.admin? || user == author
+  end
 end
