@@ -24,7 +24,7 @@ class ArticlesEditTest < ActionDispatch::IntegrationTest
     assert has_no_content?("Article was successfully updated.")
     assert has_field?("Title", :with => "")
     assert has_field?("Url", :with => "test@example.com")
-    assert has_content?("2 errors prohibited this article from being saved")
+    assert has_content?("2 errors prohibited this Article from being saved")
     assert has_content?("Title can't be blank")
     assert has_content?("Url is invalid")
   end

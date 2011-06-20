@@ -33,7 +33,7 @@ class ArticlesPostTest < ActionDispatch::IntegrationTest
     assert has_no_content?("Article was successfully created.")
     assert has_field?("Title", :with => "R3")
     assert has_field?("Url", :with => "test@example.com")
-    assert has_content?("3 errors prohibited this article from being saved")
+    assert has_content?("3 errors prohibited this Article from being saved")
     assert has_content?("Title is too short (minimum is 3 characters)")
     assert has_content?("Url is invalid")
     assert has_content?("Body can't be blank")
