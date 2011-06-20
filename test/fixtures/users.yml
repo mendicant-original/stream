@@ -1,9 +1,0 @@
-john:
-  name: John
-
-mary:
-  name: Mary
-
-admin:
-  name: Admin
-  admin: true

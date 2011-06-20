@@ -40,9 +40,6 @@ class ArticlesPostTest < ActionDispatch::IntegrationTest
   end
 
   test "attempt to post an article when not signed in" do
-    # TODO: remove after integrating authentication
-    User.delete_all
-
     visit root_path
     assert has_no_link?("Post article")
 

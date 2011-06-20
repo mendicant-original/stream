@@ -13,7 +13,7 @@ class ApplicationHelperTest < ActionView::TestCase
   end
 
   test "#render_error_messages renders nothing when the given object has no errors" do
-    object = articles(:john_article)
+    object = Factory(:john_article)
     assert_nil render_error_messages(object)
   end
 

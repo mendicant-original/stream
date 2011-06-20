@@ -2,13 +2,14 @@ require 'test_helper'
 
 class ArticlesEditTest < ActionDispatch::IntegrationTest
   test "edit an article I own" do
-    sign_user_in
-    edit_article
+    article = Factory(:john_article)
+    sign_user_in(article.author)
+    edit_article(article)
   end
 
   test "attempt to edit an article with invalid attributes" do
-    sign_user_in
-    article = articles(:john_article)
+    article = Factory(:john_article)
+    sign_user_in(article.author)
 
     within article do
       assert has_content?("Rails 3 is coming!")
@@ -30,9 +31,7 @@ class ArticlesEditTest < ActionDispatch::IntegrationTest
   end
 
   test "attempt to edit an article when not signed in" do
-    # TODO: remove after integrating authentication
-    User.delete_all
-    article = articles(:john_article)
+    article = Factory(:john_article)
 
     visit root_path
     assert has_no_link?("edit")
@@ -43,8 +42,8 @@ class ArticlesEditTest < ActionDispatch::IntegrationTest
   end
 
   test "attempt to edit an article from another user" do
-    sign_user_in users(:john)
-    other_user_article = articles(:mary_article)
+    other_user_article = Factory(:mary_article)
+    sign_user_in Factory(:john)
 
     within other_user_article do
       assert has_content?("Java rocks!")
@@ -57,17 +56,14 @@ class ArticlesEditTest < ActionDispatch::IntegrationTest
   end
 
   test "as Admin - edit an article" do
-    # TODO: remove after auth integration. Need to have only the admin.
-    User.delete_all(["id <> ?", users(:admin)])
+    article = Factory(:john_article)
     sign_admin_in
-    edit_article
+    edit_article(article)
   end
 
   private
 
-  def edit_article
-    article = articles(:john_article)
-
+  def edit_article(article)
     within article do
       assert has_content?("Rails 3 is coming!")
 

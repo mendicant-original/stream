@@ -6,13 +6,17 @@ require 'capybara/rails'
 class ActionDispatch::IntegrationTest
   include Capybara::DSL
 
-  def sign_user_in(user=users(:john))
-    # Sign in stub method.
+  # TODO: remove when integrating entire auth.
+  teardown { ApplicationController.current_user_signed_in = nil }
+
+  # TODO: Stub current user using Omniauth and remove ApplicationController hack.
+  def sign_user_in(user=Factory(:user))
+    ApplicationController.current_user_signed_in = user
     visit root_path
     user
   end
 
-  def sign_admin_in(admin=users(:admin))
+  def sign_admin_in(admin=Factory(:admin))
     sign_user_in(admin)
   end
 
@@ -22,6 +26,15 @@ class ActionDispatch::IntegrationTest
   end
 end
 
-class ActiveSupport::TestCase
-  fixtures :all
+# TODO: hack for setting current user, remove when integrating entire auth.
+class ApplicationController < ActionController::Base
+  @@current_user_signed_in = nil
+
+  def self.current_user_signed_in=(user)
+    @@current_user_signed_in = user
+  end
+
+  def current_user
+    @@current_user_signed_in
+  end
 end

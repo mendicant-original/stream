@@ -10,5 +10,6 @@ gem "omniauth", '~> 0.2.5'
 
 group :test do
   gem "capybara"
+  gem "factory_girl_rails"
   gem "test-unit"
 end

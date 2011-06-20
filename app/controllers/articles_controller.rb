@@ -45,11 +45,6 @@ class ArticlesController < ApplicationController
     end
   end
 
-  # TODO: remove this stub method after integrate entire auth.
-  def current_user
-    @current_user ||= User.last
-  end
-
   def find_article
     @article = Article.find(params[:id])
   end
