@@ -5,8 +5,8 @@ class ArticlesPostTest < ActionDispatch::IntegrationTest
     sign_user_in
     click_link "Post article"
 
-    assert_equal new_article_path, current_path
-    assert has_css?("h1", :text => "Post an article")
+    assert_current_path new_article_path
+    assert_css "h1", :text => "Post an article"
 
     fill_in "Title", :with => "Rails 3 released"
     fill_in "Url", :with => "http://weblog.rubyonrails.org/rails-3-released"
@@ -14,11 +14,11 @@ class ArticlesPostTest < ActionDispatch::IntegrationTest
     fill_in "Tags", :with => "ruby, rails, new release"
     click_button "Post"
 
-    assert_equal root_path, current_path
-    assert has_content?("Article was successfully created.")
-    assert has_link?("Rails 3 released",
-                     :href => "http://weblog.rubyonrails.org/rails-3-released")
-    assert has_content?("Rails 3 was released yesterday! Yay!")
+    assert_current_path root_path
+    assert_content "Article was successfully created."
+    assert_link "Rails 3 released",
+                :href => "http://weblog.rubyonrails.org/rails-3-released"
+    assert_content "Rails 3 was released yesterday! Yay!"
   end
 
   test "attempt to post an article with invalid attributes" do
@@ -29,22 +29,22 @@ class ArticlesPostTest < ActionDispatch::IntegrationTest
     fill_in "Url", :with => "test@example.com"
     click_button "Post"
 
-    assert_equal articles_path, current_path
-    assert has_no_content?("Article was successfully created.")
-    assert has_field?("Title", :with => "R3")
-    assert has_field?("Url", :with => "test@example.com")
-    assert has_content?("3 errors prohibited this Article from being saved")
-    assert has_content?("Title is too short (minimum is 3 characters)")
-    assert has_content?("Url is invalid")
-    assert has_content?("Body can't be blank")
+    assert_current_path articles_path
+    assert_no_content "Article was successfully created."
+    assert_field "Title", :with => "R3"
+    assert_field "Url", :with => "test@example.com"
+    assert_content "3 errors prohibited this Article from being saved"
+    assert_content "Title is too short (minimum is 3 characters"
+    assert_content "Url is invalid"
+    assert_content "Body can't be blank"
   end
 
   test "attempt to post an article when not signed in" do
     visit root_path
-    assert has_no_link?("Post article")
+    assert_no_link "Post article"
 
     visit new_article_path
-    assert_equal sign_in_path, current_path
-    assert has_content?("Please sign in to continue!")
+    assert_current_path sign_in_path
+    assert_content "Please sign in to continue!"
   end
 end

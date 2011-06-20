@@ -12,7 +12,7 @@ class ArticlesEditTest < ActionDispatch::IntegrationTest
     sign_user_in(article.author)
 
     within article do
-      assert has_content?("Rails 3 is coming!")
+      assert_content "Rails 3 is coming!"
 
       click_link "edit"
     end
@@ -21,24 +21,24 @@ class ArticlesEditTest < ActionDispatch::IntegrationTest
     fill_in "Url", :with => "test@example.com"
     click_button "Post"
 
-    assert_equal article_path(article), current_path
-    assert has_no_content?("Article was successfully updated.")
-    assert has_field?("Title", :with => "")
-    assert has_field?("Url", :with => "test@example.com")
-    assert has_content?("2 errors prohibited this Article from being saved")
-    assert has_content?("Title can't be blank")
-    assert has_content?("Url is invalid")
+    assert_current_path article_path(article)
+    assert_no_content "Article was successfully updated."
+    assert_field "Title", :with => ""
+    assert_field "Url", :with => "test@example.com"
+    assert_content "2 errors prohibited this Article from being saved"
+    assert_content "Title can't be blank"
+    assert_content "Url is invalid"
   end
 
   test "attempt to edit an article when not signed in" do
     article = Factory(:john_article)
 
     visit root_path
-    assert has_no_link?("edit")
+    assert_no_link "edit"
 
     visit edit_article_path(article)
-    assert_equal sign_in_path, current_path
-    assert has_content?("Please sign in to continue!")
+    assert_current_path sign_in_path
+    assert_content "Please sign in to continue!"
   end
 
   test "attempt to edit an article from another user" do
@@ -46,13 +46,13 @@ class ArticlesEditTest < ActionDispatch::IntegrationTest
     sign_user_in Factory(:john)
 
     within other_user_article do
-      assert has_content?("Java rocks!")
-      assert has_no_link?("edit")
+      assert_content "Java rocks!"
+      assert_no_link "edit"
     end
 
     visit edit_article_path(other_user_article)
-    assert_equal root_path, current_path
-    assert has_content?("You are not authorized to edit other user's articles!")
+    assert_current_path root_path
+    assert_content "You are not authorized to edit other user's articles!"
   end
 
   test "as Admin - edit an article" do
@@ -65,13 +65,13 @@ class ArticlesEditTest < ActionDispatch::IntegrationTest
 
   def edit_article(article)
     within article do
-      assert has_content?("Rails 3 is coming!")
+      assert_content "Rails 3 is coming!"
 
       click_link "edit"
     end
 
-    assert_equal edit_article_path(article), current_path
-    assert has_css?("h1", :text => "Edit article")
+    assert_current_path edit_article_path(article)
+    assert_css "h1", :text => "Edit article"
 
     fill_in "Title", :with => "Rails 3 released"
     fill_in "Url", :with => "http://weblog.rubyonrails.org/rails-3-released"
@@ -79,13 +79,13 @@ class ArticlesEditTest < ActionDispatch::IntegrationTest
     fill_in "Tags", :with => "ruby, rails, new release"
     click_button "Post"
 
-    assert_equal root_path, current_path
-    assert has_content?("Article was successfully updated.")
+    assert_current_path root_path
+    assert_content "Article was successfully updated."
     within article do
-      assert has_link?("Rails 3 released",
-        :href => "http://weblog.rubyonrails.org/rails-3-released")
-      assert has_content?("Rails 3 was released yesterday! Yay!")
-      assert has_no_content?("Rails 3 is coming")
+      assert_link "Rails 3 released",
+        :href => "http://weblog.rubyonrails.org/rails-3-released"
+      assert_content "Rails 3 was released yesterday! Yay!"
+      assert_no_content "Rails 3 is coming"
     end
   end
 end

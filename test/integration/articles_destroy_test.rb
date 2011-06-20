@@ -11,7 +11,7 @@ class ArticlesDestroyTest < ActionDispatch::IntegrationTest
     article = Factory(:john_article)
 
     visit root_path
-    assert has_no_link?("destroy")
+    assert_no_link "destroy"
   end
 
   test "attempt to destroy an article from another user" do
@@ -19,8 +19,8 @@ class ArticlesDestroyTest < ActionDispatch::IntegrationTest
     sign_user_in Factory(:john)
 
     within other_user_article do
-      assert has_content?("Java rocks!")
-      assert has_no_link?("destroy")
+      assert_content "Java rocks!"
+      assert_no_link "destroy"
     end
   end
 
@@ -33,16 +33,16 @@ class ArticlesDestroyTest < ActionDispatch::IntegrationTest
   private
 
   def destroy_article(article)
-    assert has_css?(".article", :count => 1)
+    assert_css ".article", :count => 1
     within article do
-      assert has_content?("Rails 3 is coming!")
+      assert_content "Rails 3 is coming!"
 
       click_link "destroy"
     end
 
-    assert_equal root_path, current_path
-    assert has_content?("Article was successfully destroyed.")
-    assert has_no_content?("Rails 3 is coming!")
-    assert has_no_css?(".article")
+    assert_current_path root_path
+    assert_content "Article was successfully destroyed."
+    assert_no_content "Rails 3 is coming!"
+    assert_no_css ".article"
   end
 end
