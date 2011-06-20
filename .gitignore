@@ -3,7 +3,6 @@ db/*.sqlite3
 log/*.log
 tmp/
 config/database.yml
-db/schema.rb
 .idea/*
 .rvmrc
 config/secret_token.rb
