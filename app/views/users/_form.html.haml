@@ -24,8 +24,9 @@
   .field
     = f.label :about
     = f.text_area :about
-  .field
-    = f.label :admin
-    = f.check_box :admin
+  -if current_user.admin?
+    .field
+      = f.label :admin
+      = f.check_box :admin
   .actions
     = f.submit 'Save'
