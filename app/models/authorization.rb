@@ -4,12 +4,6 @@ class Authorization < ActiveRecord::Base
   validates_presence_of   :user_id, :uid, :provider
   validates_uniqueness_of :uid, :scope => :provider
   
-  # application-specific logic for valid user
-  def self.valid_for_hash(hash)
-    hash['user_info']['error'].nil? && 
-      (hash['user_info']['alumnus'] || hash['user_info']['staff'])
-  end
-  
   def self.find_from_hash(hash)      
     auth = find_by_provider_and_uid(hash['provider'], hash['uid'].to_s)
     return unless auth

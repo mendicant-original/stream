@@ -66,20 +66,6 @@ module Support
       within(scope) { click_link(text) }
     end
 
-    def sign_user_in(user=Factory(:user))
-      visit sign_in_path
-      visit root_path
-      user
-    end
-
-    def sign_admin_in(admin=Factory(:admin))
-      sign_user_in(admin)
-    end
-
-    def sign_out
-      click_link 'Sign Out'
-    end
-
     def within(scope, prefix=nil)
       scope = '#' << ActionController::RecordIdentifier.dom_id(scope, prefix) if scope.is_a?(ActiveRecord::Base)
       super(scope)
