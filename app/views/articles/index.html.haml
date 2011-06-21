@@ -1,2 +1,16 @@
-%h1 Articles#index
-%p Find me in app/views/articles/index.html.haml
+%ul
+  - @articles.each do |article|
+    = content_tag_for :li, article do
+      %h2
+        = link_to article.title, article.url
+        %small= url_host(article.url)
+      %p= article.body
+      %div.user_info
+        by
+        = article.author.try(:name)
+        %br
+        = l article.created_at.to_date, :format => :long
+        %br
+        - if signed_in? && article.editable_by?(current_user)
+          = link_to 'edit', edit_article_path(article)
+          = link_to 'destroy', article, :confirm => 'Are you sure?', :method => :delete

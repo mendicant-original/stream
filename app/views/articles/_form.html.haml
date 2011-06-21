@@ -1,0 +1,25 @@
+= form_for @article do |f|
+  = render_error_messages(@article)
+
+  .field
+    = f.label :title
+    = f.text_field :title
+    %span.hint Create a short and descriptive title for your post.
+  .field
+    = f.label :url
+    = f.text_field :url
+    %span.hint The url you want to link to.
+  .field
+    = f.label :body
+    = f.text_field :body
+    %span.hint
+      You can use Markdown to style your content.
+      %small <a href="http://daringfireball.net/projects/markdown/syntax" target="blank" title="Markdown syntax docs">Learn more about Markdown</a>
+  .field
+    = f.label :tag_list, "Tags"
+    = f.text_field :tag_list
+    %span.hint Add some tags to make finding your article easier.
+  .actions
+    = f.submit 'Post!'
+    or
+    = link_to "get me out of here", root_path

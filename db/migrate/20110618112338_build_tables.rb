@@ -15,8 +15,8 @@ class BuildTables < ActiveRecord::Migration
     end
 
     create_table "articles" do |t|
-      t.belongs_to :author, :class_name => "User"
-      
+      t.belongs_to :author
+
       t.boolean "official"
       t.string  "url"
       t.string  "title"
