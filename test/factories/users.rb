@@ -7,7 +7,7 @@ Factory.define :john, :class => User do |f|
 end
 
 Factory.define :mary, :class => User do |f|
-  f.name "John"
+  f.name "Mary"
 end
 
 Factory.define :admin, :class => User do |f|
