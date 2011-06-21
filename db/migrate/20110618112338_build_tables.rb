@@ -15,7 +15,7 @@ class BuildTables < ActiveRecord::Migration
     end
 
     create_table "articles" do |t|
-      t.belongs_to :author, :class => "User"
+      t.belongs_to :author, :class_name => "User"
       
       t.boolean "official"
       t.string  "url"
@@ -23,7 +23,6 @@ class BuildTables < ActiveRecord::Migration
       t.text    "body"
 
       t.timestamps
-      #has_many   :tags
     end
 
     create_table "taggings" do |t|
