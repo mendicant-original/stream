@@ -50,11 +50,16 @@ class UsersController < ApplicationController
   # DELETE /users/1.xml
   def destroy
     @user = User.find(params[:id])
-    @user.destroy
+    if @user.editable_by?(current_user)
+      @user.destroy
 
-    respond_to do |format|
-      format.html { redirect_to(users_url, :notice => 'User was successfully deleted.') }
-      format.xml  { head :ok }
+      respond_to do |format|
+        format.html { redirect_to(users_url, :notice => 'User was successfully deleted.') }
+        format.xml  { head :ok }
+      end
+    else
+      flash[:notice] = "Permission Denied"
+      redirect_to(users_path)
     end
   end
 end

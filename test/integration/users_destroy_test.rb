@@ -1,0 +1,54 @@
+require 'test_helper'
+
+class ArticlesEditTest < ActionDispatch::IntegrationTest
+
+  test "destroy myself" do
+    user = Factory :john
+    sign_user_in(user)
+    visit users_path
+
+    within user do
+      click_link 'Destroy'
+    end
+
+    assert_current_path users_path
+    within '#notice' do
+      assert_content 'successfully deleted'
+    end
+
+    assert_no_css "user_#{user.id}"
+  end
+
+  test "destroy other user" do
+    user = Factory :john
+    other = Factory :mary
+
+    sign_user_in(user)
+
+    visit users_path
+
+    within other do
+      assert_no_link('Destroy')
+    end
+    assert_false("I don't know how to test deleting a user directly (via http delete rather than clicking on link) with capabrya")
+  end
+
+  test "destroy other user as admin" do
+    user = Factory :john
+    admin = Factory :admin
+
+    sign_user_in(admin)
+
+    visit users_path
+
+    within user do
+      click_link 'Destroy'
+    end
+
+    assert_current_path(users_path)
+    within '#notice' do
+      assert_content 'successfully deleted'
+    end
+    assert_no_css "user_#{user.id}"
+  end
+end
