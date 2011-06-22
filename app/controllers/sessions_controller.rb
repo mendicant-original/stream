@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  before_filter :get_auth_hash, :only => [:create]
+  before_filter :get_auth_hash, :check_permissions, :only => [:create]
   
   def new
     
@@ -33,6 +33,16 @@ class SessionsController < ApplicationController
     @auth = request.env['omniauth.auth']
   end
     
-   #TODO add before_filter for checking uni-web permissions
-   
+  def check_permissions
+    nick = @auth['user_info']['github']
+    user = RMU::University::User.find_by_github(nick)
+    alert = \
+      if user.github.nil? || user.error
+        "Your github account is not registered on University-web"
+      elsif !user.alumnus && !user.staff
+        "You are not authorized as a user on Flow"
+      end
+    redirect_to root_path, :alert => alert if alert
+  end
+  
 end
