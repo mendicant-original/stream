@@ -10,7 +10,7 @@ class ActionDispatch::IntegrationTest
   include Support::Integration
   include Support::Auth
   
-  setup { OmniAuth.config.test_mode = true }
+  setup  { OmniAuth.config.test_mode = true }
 
   teardown { Capybara.reset_sessions! } 
 end

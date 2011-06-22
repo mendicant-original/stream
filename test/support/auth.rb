@@ -1,19 +1,19 @@
 module Support
   module Auth
     
-    def mock_auth_for(user)
+    def mock_auth_for(auth)
       OmniAuth.config.mock_auth[:github] = {
-        'provider' => 'github',
-        'uid' => '12345',
-        'user_info' => { 'name' => user.name,
-                         'nickname' => user.github, 
-                         'email' => user.email
+        'provider' => auth.provider,
+        'uid' => auth.uid,
+        'user_info' => { 'name' => auth.user.name,
+                         'nickname' => auth.user.github, 
+                         'email' => auth.user.email
                        }
       }
     end
     
     def sign_user_in(user=Factory(:user))
-      mock_auth_for(user)
+      mock_auth_for(user.authorizations.first)
       visit '/auth/github'   # TODO should be click_link 'Sign In' ?
     end
 
