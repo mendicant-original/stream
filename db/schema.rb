@@ -23,22 +23,22 @@ ActiveRecord::Schema.define(:version => 20110621075931) do
   end
 
   create_table "authorizations", :force => true do |t|
-    t.integer  "user_id",    :null => false
-    t.string   "provider",   :null => false
-    t.string   "uid",        :null => false
+    t.integer  "user_id"
+    t.string   "provider"
+    t.string   "uid"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "taggings", :force => true do |t|
-    t.integer  "tag_id",     :null => false
-    t.integer  "article_id", :null => false
+    t.integer  "tag_id"
+    t.integer  "article_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "tags", :force => true do |t|
-    t.string   "name",       :null => false
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
