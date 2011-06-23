@@ -34,8 +34,8 @@ class SessionsController < ApplicationController
   end
     
   def check_permissions
-    nick = @auth['user_info']['github']
-    user = RMU::University::User.find_by_github(nick)
+    nick = @auth['user_info']['nickname']
+    user = UniversityWeb::User.find_by_github(nick)
     alert = \
       if user.github.nil? || user.error
         "Your github account is not registered on University-web"

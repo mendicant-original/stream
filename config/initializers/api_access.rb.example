@@ -1,9 +1,7 @@
 
-module RMU
-  module University
+module UniversityWeb
     
     SERVICE_ID = < basic auth user >
     SERVICE_PASS = < basic auth password >
     
-  end
 end
