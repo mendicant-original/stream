@@ -45,6 +45,6 @@ class ArticlesPostTest < ActionDispatch::IntegrationTest
 
     visit new_article_path
     assert_current_path sign_in_path
-    assert_content "Please sign in to continue!"
+    assert_content "Redirecting to Github for login"
   end
 end
