@@ -7,4 +7,4 @@ config/database.yml
 .rvmrc
 config/secret_token.rb
 config/omniauth.yml
-
+public/stylesheets/compiled/*
