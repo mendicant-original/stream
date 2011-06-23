@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110618112338) do
+ActiveRecord::Schema.define(:version => 20110621075931) do
 
   create_table "articles", :force => true do |t|
     t.integer  "author_id"
@@ -23,22 +23,22 @@ ActiveRecord::Schema.define(:version => 20110618112338) do
   end
 
   create_table "authorizations", :force => true do |t|
-    t.integer  "user_id"
-    t.string   "provider"
-    t.string   "uid"
+    t.integer  "user_id",    :null => false
+    t.string   "provider",   :null => false
+    t.string   "uid",        :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "taggings", :force => true do |t|
-    t.integer  "tag_id"
-    t.integer  "article_id"
+    t.integer  "tag_id",     :null => false
+    t.integer  "article_id", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "tags", :force => true do |t|
-    t.string   "name"
+    t.string   "name",       :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
