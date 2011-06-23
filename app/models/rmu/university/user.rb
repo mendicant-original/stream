@@ -15,22 +15,26 @@ module RMU
       
       private
       
-      def service
-        RestClient::Resource.new(RMU::University.site, RMU::University::SERVICE_ID, RMU::University::SERVICE_PASS)
-      end
+      class << self
       
-      def find(params = {})
-        service["/users"].get "", 
-                              :accepts => 'application/json', 
-                              :params => params do |resp, req, result|
-          
-          # TODO handle error response?
-          new(parse(resp))
+        def service
+          RestClient::Resource.new(RMU::University.site, RMU::University::SERVICE_ID, RMU::University::SERVICE_PASS)
         end
-      end
+        
+        def find(params = {})
+          service["/users"].get "", 
+                                :accepts => 'application/json', 
+                                :params => params do |resp, req, result|
+            
+            # TODO handle error response?
+            new(parse(resp))
+          end
+        end
+        
+        def parse(response)
+          JSON.parse(response.to_s)
+        end
       
-      def parse(response)
-        JSON.parse(response.to_s)
       end
       
     end
