@@ -38,7 +38,7 @@ class ArticlesEditTest < ActionDispatch::IntegrationTest
 
     visit edit_article_path(article)
     assert_current_path sign_in_path
-    assert_content "Please sign in to continue!"
+    assert_content "Redirecting to Github for login"
   end
 
   test "attempt to edit an article from another user" do
