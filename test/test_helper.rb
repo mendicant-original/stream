@@ -3,24 +3,15 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 require 'capybara/rails'
 require 'support/integration'
+require 'support/auth'
 
 class ActionDispatch::IntegrationTest
   include Capybara::DSL
   include Support::Integration
+  include Support::Auth
+  
+  setup  { OmniAuth.config.test_mode = true }
 
-  # TODO: remove when integrating entire auth.
-  teardown { ApplicationController.current_user_signed_in = nil }
+  teardown { Capybara.reset_sessions! } 
 end
 
-# TODO: hack for setting current user, remove when integrating entire auth.
-class ApplicationController < ActionController::Base
-  @@current_user_signed_in = nil
-
-  def self.current_user_signed_in=(user)
-    @@current_user_signed_in = user
-  end
-
-  def current_user
-    @@current_user_signed_in
-  end
-end
