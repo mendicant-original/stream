@@ -30,7 +30,12 @@ class UserDestroyTest < ActionDispatch::IntegrationTest
     within other do
       assert_no_link('Destroy')
     end
-    assert_false("I don't know how to test deleting a user directly (via http delete rather than clicking on link) with capabrya")
+
+    delete_via_redirect "/users/#{other.id}"
+
+    within '#alert' do
+      assert_content "Permission denied"
+    end
   end
 
   test "destroy other user as admin" do
