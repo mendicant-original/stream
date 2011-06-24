@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ArticlesEditTest < ActionDispatch::IntegrationTest
+class UserDestroyTest < ActionDispatch::IntegrationTest
 
   test "destroy myself" do
     user = Factory :john
