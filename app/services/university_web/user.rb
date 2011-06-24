@@ -1,9 +1,9 @@
 module UniversityWeb
   
-  site = "http://university.rubymendicant.com"
+  SITE = "http://university.rubymendicant.com"
 
   def self.service
-    RestClient::Resource.new(site, SERVICE_ID, SERVICE_PASS)
+    RestClient::Resource.new(SITE, SERVICE_ID, SERVICE_PASS)
   end
   
   class User < Struct.new(:github, :alumnus, :staff, :error)
@@ -21,12 +21,11 @@ module UniversityWeb
     class << self
           
       def find(params = {})
-        ::UniversityWeb.service["/users.json"].get "", 
-            :params => params do |resp, req, result|
+        resp = ::UniversityWeb.service["/users.json"].get "", 
+                  :params => params
           
-          # TODO handle error response?
-          parse(resp).map {|hash| new(hash)}
-        end
+        # TODO handle error response?
+        parse(resp).map {|hash| new(hash)}
       end
       
       def parse(response)
