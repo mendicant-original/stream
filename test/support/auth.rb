@@ -1,5 +1,3 @@
-require 'mocha'
-
 module Support
   module Auth
     

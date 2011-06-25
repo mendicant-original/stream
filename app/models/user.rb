@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   has_many :articles,       :dependent => :destroy, :foreign_key => :author_id
   has_many :authorizations, :dependent => :destroy
   
+  attr_accessible :name, :github, :email, :twitter, :location, :about
  
   def self.create_from_hash!(hash)
     create(:name     => hash['user_info']['name'],
@@ -17,4 +18,7 @@ class User < ActiveRecord::Base
                       :email    => hash['user_info']['email'])
   end
   
+  def editable_by?(user)
+    user.admin? || user == self
+  end
 end
