@@ -7,9 +7,11 @@ gem "haml-rails"
 gem "pg"
 gem "jquery-rails"
 gem "omniauth", '~> 0.2.5'
+gem "rest-client", '~> 1.6.3'
 
 group :test do
   gem "capybara"
   gem "factory_girl_rails"
   gem "test-unit"
+  gem "mocha"
 end
