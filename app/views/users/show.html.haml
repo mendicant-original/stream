@@ -1,0 +1,27 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @user.name
+%p
+  %b Github:
+  = @user.github
+%p
+  %b Email:
+  = @user.email
+%p
+  %b Twitter:
+  = @user.twitter
+%p
+  %b Location:
+  = @user.location
+%p
+  %b About:
+  = @user.about
+%p
+  %b Admin:
+  = @user.admin
+
+= link_to 'Edit', edit_user_path(@user)
+\|
+= link_to 'Back', users_path
