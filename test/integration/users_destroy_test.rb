@@ -30,12 +30,6 @@ class UserDestroyTest < ActionDispatch::IntegrationTest
     within other do
       assert_no_link('Destroy')
     end
-
-    delete_via_redirect "/users/#{other.id}"
-
-    within '#alert' do
-      assert_content "Permission denied"
-    end
   end
 
   test "destroy other user as admin" do
