@@ -14,4 +14,5 @@ group :test do
   gem "factory_girl_rails"
   gem "test-unit"
   gem "mocha"
+  gem "test_notifier", '~> 0.3.6'
 end
