@@ -3,8 +3,11 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 require 'test_notifier/runner/test_unit'
 require 'capybara/rails'
-require 'support/integration'
+require 'support/services'
 require 'support/auth'
+require 'support/integration'
+
+require 'mocha'
 
 OmniAuth.config.test_mode = true
 
