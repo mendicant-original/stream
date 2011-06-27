@@ -3,7 +3,7 @@ class ArticlesController < ApplicationController
   before_filter :find_article, :authorized_users_only, :only => [:edit, :update, :destroy]
 
   def index
-    @articles = Article.includes(:author).order("id desc")
+    @articles = Article.includes(:author).order("id desc").page(params[:page])
   end
 
   def new

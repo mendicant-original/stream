@@ -9,6 +9,7 @@ gem "omniauth", '~> 0.2.5'
 gem "pg"
 gem "rdiscount"
 gem "rest-client", '~> 1.6.3'
+gem "kaminari", '~> 0.12.4'
 
 group :test do
   gem "capybara"
