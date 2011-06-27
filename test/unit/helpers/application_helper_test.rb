@@ -1,6 +1,25 @@
 require 'test_helper'
 
 class ApplicationHelperTest < ActionView::TestCase
+  test "#md converts markdown format to html, wrapping text in paragraphs" do
+    @output_buffer = md(%q[
+      **Hello** _world_
+
+      Features to complete:
+
+      * Articles search
+      * Profile view: [github](https://github.com) area
+    ].squeeze(" "))
+
+    assert_select "strong", "Hello"
+    assert_select "em", "world"
+    assert_select "p", "Hello world"
+    assert_select "p", "Features to complete:"
+    assert_select "ul li", "Articles search"
+    assert_select "ul li", "Profile view: github area"
+    assert_select "a[href=\"https://github.com\"]", "github"
+  end
+
   test "#render_error_messages returns a container listing all error messages in the object" do
     object = Article.new
     object.valid?
