@@ -1,2 +1,7 @@
-// Place your application-specific JavaScript functions and classes here
-// This file is automatically included by javascript_include_tag :defaults
+// Setup the Flow [University Web] Namespace
+var Flow = Flow || new Object();
+
+Flow.setupNamespace = function(namespace){
+	if(Flow[namespace] == undefined)
+		Flow[namespace] = {}
+}

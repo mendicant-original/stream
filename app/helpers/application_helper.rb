@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def md(text)
+    RDiscount.new(text || "").to_html.html_safe
+  end
+
   def render_error_messages(object)
     if object.errors.any?
       name    = object.class.model_name.human

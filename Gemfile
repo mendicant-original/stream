@@ -4,9 +4,10 @@ gem 'rails', '3.0.9'
 
 gem "compass"
 gem "haml-rails"
-gem "pg"
 gem "jquery-rails"
 gem "omniauth", '~> 0.2.5'
+gem "pg"
+gem "rdiscount"
 gem "rest-client", '~> 1.6.3'
 
 group :test do
