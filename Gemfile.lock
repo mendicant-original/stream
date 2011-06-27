@@ -57,6 +57,7 @@ GEM
       rack (< 2, >= 1.1.0)
     ffi (1.0.9)
     fssm (0.2.7)
+    gravatar_image_tag (1.0.0)
     haml (3.1.2)
     haml-rails (0.3.4)
       actionpack (~> 3.0)
@@ -176,6 +177,7 @@ DEPENDENCIES
   capybara
   compass
   factory_girl_rails
+  gravatar_image_tag (~> 1.0.0)
   haml-rails
   jquery-rails
   mocha
