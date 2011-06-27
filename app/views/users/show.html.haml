@@ -1,5 +1,6 @@
 %p#notice= notice
 
+= gravatar_image_tag(@user.email, :alt => @user.name)
 %p
   %b Name:
   = @user.name

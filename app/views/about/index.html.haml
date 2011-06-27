@@ -12,8 +12,9 @@
   .user_preview
     %ul
       - @users.each do |user|
-        %h
+        = gravatar_image_tag(user.email, :alt => user.name)
+        %h1
           = link_to user.name, user_path(user)
         %p
           = user.about
-      
+
