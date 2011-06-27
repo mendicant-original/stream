@@ -11,7 +11,7 @@
     %span.hint The url you want to link to.
   .field
     = f.label :body
-    = f.text_area :body
+    = f.text_area :body, "data-preview" => true
     %span.hint
       You can use Markdown to style your content.
       %small <a href="http://daringfireball.net/projects/markdown/syntax" target="blank" title="Markdown syntax docs">Learn more about Markdown</a>
@@ -23,3 +23,7 @@
     = f.submit 'Post!'
     or
     = link_to "get me out of here", root_path
+
+= content_for :javascript do
+  = javascript_include_tag "showdown", "flow.preview"
+  = javascript_tag "Flow.Preview.init();"
