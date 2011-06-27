@@ -4,7 +4,7 @@
       %h2
         = link_to article.title, article.url
         %small= url_host(article.url)
-      %p= article.body
+      %p= md(article.body)
       %div.user_info
         by
         = article.author.try(:name)

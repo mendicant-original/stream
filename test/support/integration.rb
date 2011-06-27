@@ -52,7 +52,7 @@ module Support
         "Flash alert exists in the page"
     end
 
-    def assert_link(text, options)
+    def assert_link(text, options={})
       assert has_link?(text, options), "Link #{text} does not exist in the page"
     end
 
