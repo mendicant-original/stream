@@ -6,12 +6,12 @@ require 'capybara/rails'
 require 'support/integration'
 require 'support/auth'
 
+OmniAuth.config.test_mode = true
+
 class ActionDispatch::IntegrationTest
   include Capybara::DSL
   include Support::Integration
   include Support::Auth
-
-  setup  { OmniAuth.config.test_mode = true }
 
   teardown { Capybara.reset_sessions! }
 end

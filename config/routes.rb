@@ -6,5 +6,5 @@ Flow::Application.routes.draw do
   match '/sign_in'  => 'sessions#new',     :as => 'sign_in'
 
   resources :articles, :except => :show
-  resources :users, :except => :new
+  resources :users, :except => [:new, :create]
 end
