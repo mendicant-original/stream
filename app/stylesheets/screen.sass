@@ -37,22 +37,22 @@ em
   padding-bottom: 5px
   padding-top: 5px
 
-#header h1
-  font-size: 1.1em
-  margin-right: 30px
+  h1
+    font-size: 1.1em
+    margin-right: 30px
 
-#header h1 a
-  color: inherit
-  text-decoration: none
+    a
+      color: inherit
+      text-decoration: none
 
-#header h1, #header > nav, #header > nav ul, #header > nav li
-  display: inline
+  h1, > nav, > nav ul, > nav li
+    display: inline
 
-#header > nav li:after
-  content: " | "
+  > nav li:after
+    content: " | "
 
-#header > nav li:last-child:after
-  content: none
+  > nav li:last-child:after
+    content: none
 
 #rss
   background: transparent url(/images/rss-icon.png) no-repeat top left
@@ -82,16 +82,16 @@ em
   font-size: small
   margin-left: 5px
 
-.article_content p
-  margin: 2px 0
-
-.article_content ul
-  list-style: disc
-  margin-left: 20px
-
 .article_content
   float: left
   width: 75%
+
+  p
+    margin: 2px 0
+
+  ul
+    list-style: disc
+    margin-left: 20px
 
 .user_info
   float: right
@@ -99,16 +99,17 @@ em
   position: relative
   width: 25%
 
-.user_info p
-  line-height: 25px
+  p
+    line-height: 25px
 
-.article .user_info p
-  bottom: 0
-  position: absolute
-  right: 110px
+.article .user_info
+  p
+    bottom: 0
+    position: absolute
+    right: 110px
 
-.article .user_info img
-  float: right
+  img
+    float: right
 
 .separator
   border: 1px solid silver
