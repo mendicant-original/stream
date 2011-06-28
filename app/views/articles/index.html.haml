@@ -1,17 +1,20 @@
-= paginate @articles  
-%ul
-  - @articles.each do |article|
-    = content_tag_for :li, article do
+- @articles.each do |article|
+  = content_tag_for :article, article do
+    %div.article_content
       %h2
         = link_to article.title, article.url
         %small= url_host(article.url)
-      %p= md(article.body)
-      %div.user_info
-        by
-        = article.author.try(:name)
-        %br
-        = l article.created_at.to_date, :format => :long
-        %br
-        - if signed_in? && article.editable_by?(current_user)
-          = link_to 'edit', edit_article_path(article)
-          = link_to 'destroy', article, :confirm => 'Are you sure?', :method => :delete
+      = md(article.body)
+    %div.user_info
+      = image_tag "http://dummyimage.com/100x100/888/fff.png&text=user+profile", :alt => article.author.name
+      by
+      = link_to article.author.name, article.author
+      %br
+      = l article.created_at.to_date, :format => :long
+      %br
+      - if signed_in? && article.editable_by?(current_user)
+        = link_to 'edit', edit_article_path(article)
+        = link_to 'destroy', article, :confirm => 'Are you sure?', :method => :delete
+  = tag :hr, :class => "separator" if article != @articles.last
+
+= paginate @articles

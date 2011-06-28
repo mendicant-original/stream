@@ -3,7 +3,6 @@ Flow::Application.routes.draw do
 
   match '/auth/:provider/callback' => 'sessions#create'
   match '/sign_out' => 'sessions#destroy', :as => 'sign_out'
-  match '/sign_in'  => 'sessions#new',     :as => 'sign_in'
 
   match '/about' => 'about#index'
 

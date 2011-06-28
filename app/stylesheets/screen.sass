@@ -1,7 +1,102 @@
-/*
-  Welcome to Compass.
-  In this file you should write your main styles. (or centralize your imports)
-  Import this file using the following HTML or equivalent:
-  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
-
 @import compass/reset
+@import compass/css3/box-shadow
+
+body
+  background-color: #eee
+  color: #292929
+  font-family: "Lucida Grande", "Lucida Sans", "Helvetica", sans-serif
+  font-size: 12px
+  line-height: 1.24em
+
+strong
+  font-weight: bold
+
+em
+  font-style: italic
+
+#container
+  background-color: #f9f9f9
+  +box-shadow(#000, 0, 1px, 8px)
+  margin: 0 auto
+  max-width: 960px
+
+#header, #content, #footer
+  padding: 0 30px
+
+#header
+  border-bottom: 1px solid black
+  padding-bottom: 5px
+  padding-top: 5px
+
+#header h1
+  margin-right: 30px
+
+#header h1, #header > nav, #header > nav ul, #header > nav li
+  display: inline
+
+#header > nav li:after
+  content: " | "
+
+#header > nav li:last-child:after
+  content: none
+
+#rss
+  background: transparent url(/images/rss-icon.png) no-repeat top left
+  float: right
+  height: 16px
+  text-indent: -9999px
+  width: 16px
+
+#content
+  margin: 30px 0
+
+.article
+  clear: both
+  margin: 20px 0
+  overflow: hidden
+
+.article_content > h2
+  margin-bottom: 12px
+
+.article_content > h2 a
+  color: inherit
+  font-size: 20px
+  text-decoration: none
+
+.article_content > h2 small
+  color: gray
+  margin-left: 5px
+
+.article_content p
+  margin: 2px 0
+
+.article_content ul
+  list-style: disc
+  margin-left: 20px
+
+.article_content
+  float: left
+  width: 75%
+
+.user_info
+  float: right
+  text-align: right
+  width: 25%
+
+.user_info img
+  float: right
+  margin-left: 5px
+
+.separator
+  border: 1px solid silver
+  width: 90%
+
+.pagination
+  text-align: center
+
+#footer
+  border-top: 1px solid gray
+  color: gray
+  padding-top: 5px
+  padding-bottom: 5px
+  text-align: center

@@ -5,6 +5,7 @@ tmp/
 config/database.yml
 .idea/*
 .rvmrc
+.sass-cache/*
 config/secret_token.rb
 config/omniauth.yml
 config/initializers/api_access.rb
