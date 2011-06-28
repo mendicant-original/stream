@@ -21,4 +21,11 @@ class User < ActiveRecord::Base
   def editable_by?(user)
     user.admin? || user == self
   end
+
+  def gravatar_url(size=40)
+    hash = Digest::MD5.hexdigest(email.downcase)
+
+    "http://www.gravatar.com/avatar/#{hash}?s=#{size}&d=mm"
+  end
+
 end
