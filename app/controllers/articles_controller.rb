@@ -6,19 +6,19 @@ class ArticlesController < ApplicationController
     @articles = Article.includes(:author).order("id desc").page(params[:page])
     respond_to do |format|
       format.html
-      format.rss { render :layout => false }    
+      format.rss { render :layout => false }
     end
   end
 
   def new
-    @article = current_user.articles.build(:created_at => Time.current)
+    @article = build_article
   end
 
   def edit
   end
 
   def create
-    @article = current_user.articles.build(params[:article])
+    @article = build_article(params[:article])
 
     if @article.save
       redirect_to(root_path, :notice => 'Article was successfully created.')
@@ -47,6 +47,10 @@ class ArticlesController < ApplicationController
       redirect_to root_path,
         :alert => "You are not authorized to edit other user's articles!"
     end
+  end
+
+  def build_article(attributes={})
+    current_user.articles.build(attributes.merge(:created_at => Time.current))
   end
 
   def find_article

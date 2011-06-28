@@ -6,7 +6,7 @@ class ArticlesPostTest < ActionDispatch::IntegrationTest
     click_link "Post article"
 
     assert_current_path new_article_path
-    assert_css "h1", :text => "Post an article"
+    assert_css "h2", :text => "Post an article"
 
     fill_in "Title", :with => "Rails 3 released"
     fill_in "Url", :with => "http://weblog.rubyonrails.org/rails-3-released"
@@ -44,7 +44,6 @@ class ArticlesPostTest < ActionDispatch::IntegrationTest
     assert_no_link "Post article"
 
     visit new_article_path
-    assert_current_path sign_in_path
-    assert_content "Redirecting to Github for login"
+    assert_current_path "/auth/github"
   end
 end

@@ -37,8 +37,7 @@ class ArticlesEditTest < ActionDispatch::IntegrationTest
     assert_no_link "edit"
 
     visit edit_article_path(article)
-    assert_current_path sign_in_path
-    assert_content "Redirecting to Github for login"
+    assert_current_path "/auth/github"
   end
 
   test "attempt to edit an article from another user" do
@@ -71,7 +70,7 @@ class ArticlesEditTest < ActionDispatch::IntegrationTest
     end
 
     assert_current_path edit_article_path(article)
-    assert_css "h1", :text => "Edit article"
+    assert_css "h2", :text => "Edit article"
 
     fill_in "Title", :with => "Rails 3 released"
     fill_in "Url", :with => "http://weblog.rubyonrails.org/rails-3-released"
