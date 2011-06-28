@@ -1,20 +1,17 @@
-#content
-  .left.column
-    %h1
-      About RMU Flow
-    %p 
-      Text about RMU Flow
+.left.column
+  %h1
+    About RMU Flow
+  %p
+    Text about RMU Flow
 
-  .right.column
-    = image_tag('landing.png')
+.right.column
+  = image_tag('landing.png')
 
-
-  .user_preview
-    %ul
-      - @users.each do |user|
-        %h1
-          = image_tag user.gravatar_url(50), :alt => ""
-          = link_to user.name, user_path(user)
-        %p
-          = user.about
-      
+.user_preview
+  %ul
+    - @users.each do |user|
+      %h1
+        = image_tag user.gravatar_url(50), :alt => ""
+        = link_to user.name, user_path(user)
+      %p
+        = user.about

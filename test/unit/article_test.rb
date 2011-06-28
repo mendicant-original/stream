@@ -17,6 +17,10 @@ class ArticleTest < ActiveRecord::TestCase
     assert !@article.editable_by?(Factory(:mary))
   end
 
+  test "is not #editable_by? anyone when not persisted" do
+    assert !Article.new.editable_by?(@article.author)
+  end
+
   test "#tag_list returns a list of the tags joined by ," do
     @article.tags = %w(ruby rails webdev).map { |tag| Tag.new(:name => tag) }
 

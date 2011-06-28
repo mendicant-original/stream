@@ -11,7 +11,7 @@ class Article < ActiveRecord::Base
   end
 
   def editable_by?(user)
-    user.admin? || user == author
+    persisted? && (user.admin? || user == author)
   end
 
   attr_writer :tag_list
