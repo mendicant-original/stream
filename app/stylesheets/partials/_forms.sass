@@ -6,7 +6,7 @@ form
     display: block
 
   input[type=text], textarea
-    width: 450px
+    width: 480px
 
   textarea
     height: 150px
@@ -14,10 +14,12 @@ form
   input[type=submit]
 
   .field
+    clear: left
     margin: 7px 0
 
   .hint
     font-size: 0.9em
+    padding: 1px 0
 
   .actions
     margin: 15px 0
@@ -51,8 +53,16 @@ form
 #article-form
   width: 75%
 
+  input[type=text], .tab_container
+    display: block
+    float: left
+    margin-right: 8px
+
   .tabs, .tab_container
-    width: 460px
+    width: 490px
 
   .tabs
     margin-top: 5px
+
+  .tab_container
+    margin-bottom: 7px
