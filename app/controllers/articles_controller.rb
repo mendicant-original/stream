@@ -11,7 +11,7 @@ class ArticlesController < ApplicationController
   end
 
   def new
-    @article = current_user.articles.build
+    @article = current_user.articles.build(:created_at => Time.current)
   end
 
   def edit

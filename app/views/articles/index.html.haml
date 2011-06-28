@@ -5,17 +5,7 @@
         = link_to article.title, article.url
         %small= url_host(article.url)
       = md(article.body)
-    %div.user_info
-      = image_tag "http://dummyimage.com/100x100/888/fff.png&text=user+profile", :alt => article.author.name
-      %p
-        by
-        = link_to article.author.name, article.author
-        %br
-        = l article.created_at.to_date, :format => :long
-        %br
-        - if signed_in? && article.editable_by?(current_user)
-          = link_to 'edit', edit_article_path(article)
-          = link_to 'destroy', article, :confirm => 'Are you sure?', :method => :delete
+    = render 'user_info', :article => article, :profile_size => "100x100"
   = tag :hr, :class => "separator" if article != @articles.last
 
 = paginate @articles
