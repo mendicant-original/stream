@@ -1,5 +1,6 @@
 %p#notice= notice
 
+= image_tag @user.gravatar_url(50), :alt => ""
 %p
   %b Name:
   = @user.name
