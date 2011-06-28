@@ -12,16 +12,17 @@
     #container
       %header#header
         %h1= link_to "RbMU Flow", root_path
+
+        = link_to "RSS", articles_path(:format => :rss), :id => "rss"
         %nav
           %ul
             %li= link_to "About", about_path
             %li= link_to "Mendicant University", "http://university.rubymendicant.com", :target => "_blank"
             - if signed_in?
               %li= link_to "Post article", new_article_path
+              %li= link_to "Sign out", sign_out_path
             - else
               %li= link_to "Sign in with Github", "/auth/github"
-
-        = link_to "RSS", articles_path(:format => :rss), :id => "rss"
 
       = render_flash_messages
 
