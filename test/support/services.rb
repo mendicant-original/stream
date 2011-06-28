@@ -23,14 +23,10 @@ module Support
    
     end
    
-    module UniversityWeb
-      extend self
-      
-      def mock_user(hash)
-        service = RestClientResourceStub.new({::UniversityWeb::User::PATH => [hash].to_json})
-        ::UniversityWeb.stubs(:service).returns(service)
-      end
-      
+    def mock_uniweb_user(hash)
+      service = RestClientResourceStub.new({::UniversityWeb::User::PATH => [hash].to_json})
+      ::UniversityWeb.stubs(:service).returns(service)
     end
+    
   end
 end

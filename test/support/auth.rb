@@ -1,5 +1,6 @@
 module Support
   module Auth
+    include Support::Services
     
     def mock_auth_for(auth)
       OmniAuth.config.mock_auth[:github] = {
@@ -14,7 +15,7 @@ module Support
             
     def sign_user_in_with_mocks(user, hash)
       mock_auth_for(user.authorizations.first)
-      Support::Services::UniversityWeb.mock_user(hash)
+      mock_uniweb_user(hash)
       visit '/auth/github'   # TODO should be click_link 'Sign In' ?
     end
     
