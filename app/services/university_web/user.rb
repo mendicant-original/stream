@@ -8,6 +8,8 @@ module UniversityWeb
   
   class User < Struct.new(:github, :alumnus, :staff, :error)
           
+    PATH = "/users.json"
+    
     def self.find_by_github(nick)
       find(:github => nick).first
     end
@@ -21,7 +23,7 @@ module UniversityWeb
     class << self
           
       def find(params = {})
-        resp = ::UniversityWeb.service["/users.json"].get "", 
+        resp = ::UniversityWeb.service[PATH].get "", 
                   :params => params
           
         # TODO handle error response?
