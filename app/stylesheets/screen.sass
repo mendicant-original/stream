@@ -1,7 +1,137 @@
-/*
-  Welcome to Compass.
-  In this file you should write your main styles. (or centralize your imports)
-  Import this file using the following HTML or equivalent:
-  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
-
 @import compass/reset
+@import compass/css3/box-shadow
+@import blueprint/form
+
+@import partials/forms
+@import partials/tabs
+
+body
+  background-color: #eee
+  color: #292929
+  font-family: "Lucida Grande", "Lucida Sans", "Helvetica", sans-serif
+  font-size: 12px
+  line-height: 1.24em
+
+h2
+  font-size: 22px
+  margin: 10px 0 20px
+
+strong
+  font-weight: bold
+
+em
+  font-style: italic
+
+a, a:link, a:visited
+  color: #0000ee
+  text-decoration: none
+
+a:hover, a:active
+  color: black
+  text-decoration: underline
+
+#container
+  background-color: #f9f9f9
+  +box-shadow(#000, 0, 1px, 8px)
+  margin: 0 auto
+  max-width: 960px
+
+#header, #content, #footer
+  overflow: hidden
+  padding: 0 30px
+
+#header
+  border-bottom: 1px solid gray
+  +box-shadow(gray, 0, 1px, 2px)
+  padding-bottom: 5px
+  padding-top: 5px
+
+  h1
+    float: left
+    font-size: 1.1em
+
+    a
+      color: inherit
+
+  > nav
+    float: right
+    margin-right: 20px
+
+  h1, > nav, > nav ul, > nav li
+    display: inline
+
+  > nav li:after
+    content: " | "
+
+  > nav li:last-child:after
+    content: none
+
+#rss
+  background: transparent url(/images/rss-icon.png) no-repeat top left
+  float: right
+  height: 16px
+  text-indent: -9999px
+  width: 16px
+
+#content
+  margin: 30px 0
+
+.article
+  clear: both
+  margin: 20px 0
+  overflow: hidden
+
+.article_content > h2
+  font-size: 20px
+  margin: 0 0 12px
+
+.article_content > h2 a
+  color: inherit
+
+.article_content > h2 small
+  color: gray
+  font-size: small
+  margin-left: 5px
+
+.article_content
+  float: left
+  width: 75%
+
+  p
+    margin: 2px 0
+
+  ul
+    list-style: disc
+    margin-left: 20px
+
+.user_info
+  float: right
+  text-align: right
+  position: relative
+  width: 25%
+
+  p
+    line-height: 25px
+
+.article .user_info
+  p
+    bottom: 0
+    position: absolute
+    right: 110px
+
+  img
+    float: right
+
+.separator
+  border: 1px solid silver
+  width: 90%
+
+.pagination
+  text-align: center
+
+#footer
+  border-top: 1px solid gray
+  color: gray
+  padding-top: 5px
+  padding-bottom: 5px
+  text-align: center
