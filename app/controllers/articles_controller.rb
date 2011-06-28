@@ -4,6 +4,10 @@ class ArticlesController < ApplicationController
 
   def index
     @articles = Article.includes(:author).order("id desc").page(params[:page])
+    respond_to do |format|
+      format.html
+      format.rss { render :layout => false }    
+    end
   end
 
   def new
