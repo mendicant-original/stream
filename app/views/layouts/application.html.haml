@@ -9,14 +9,6 @@
       = stylesheet_link_tag 'compiled/ie.css', :media => 'screen, projection'
     = csrf_meta_tag
   %body
-    %header
-      = link_to "RbMU Stream", root_path
-      %nav
-        %ul
-          - if signed_in?
-            %li= link_to "Post article", new_article_path
-      %rss
-        %p= link_to "RSS", articles_path(:format => :rss)
     #container
       %header#header
         %h1= link_to "RbMU Stream", root_path
