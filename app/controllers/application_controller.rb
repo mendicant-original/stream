@@ -22,7 +22,11 @@ class ApplicationController < ActionController::Base
     !!current_user
   end
 
-  helper_method :current_user, :signed_in?
+  def sign_in_path(provider="github")
+    "/auth/#{provider}"
+  end
+
+  helper_method :current_user, :signed_in?, :sign_in_path
 
   def current_user=(user)
     @current_user = user

@@ -1,26 +1,29 @@
-= form_for @article do |f|
+= render 'user_info', :article => @article, :profile_size => "150x150"
+
+= form_for @article, :html => { :id => "article-form" } do |f|
   = render_error_messages(@article)
 
   .field
     = f.label :title
-    = f.text_field :title
+    = f.text_field :title, :tabindex => 1, :autofocus => true
     %span.hint Create a short and descriptive title for your post.
   .field
     = f.label :url
-    = f.text_field :url
+    = f.text_field :url, :tabindex => 2
     %span.hint The url you want to link to.
   .field
     = f.label :body
-    = f.text_area :body, "data-preview" => true
+    = f.text_area :body, "data-preview" => true, :tabindex => 3
     %span.hint
       You can use Markdown to style your content.
+      %br
       %small <a href="http://daringfireball.net/projects/markdown/syntax" target="blank" title="Markdown syntax docs">Learn more about Markdown</a>
   .field
     = f.label :tag_list, "Tags"
-    = f.text_field :tag_list
+    = f.text_field :tag_list, :tabindex => 4
     %span.hint Add some tags to make finding your article easier.
   .actions
-    = f.submit 'Post!'
+    = f.submit 'Post!', :tabindex => 5
     or
     = link_to "get me out of here", root_path
 
