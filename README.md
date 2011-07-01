@@ -1,3 +1,2 @@
-# Flow
+# Stream
 
-Project for RbMU's Web Development Course

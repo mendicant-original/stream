@@ -1,8 +1,8 @@
-Flow.setupNamespace("Preview");
+Stream.setupNamespace("Preview");
 
-Flow.Preview.init = function(){
+Stream.Preview.init = function(){
   $("textarea[data-preview=true]").each(function(index) {
-		Flow.Preview.buildPreviewTab($(this));
+		Stream.Preview.buildPreviewTab($(this));
 	});
 
 	// override tab clicks
@@ -16,7 +16,7 @@ Flow.Preview.init = function(){
 
 		// convert markdown for preview
 		if($(this).attr("href") == "#preview"){
-		  var html = Flow.Preview.convertMarkdown(tab_contents.find('textarea').val());
+		  var html = Stream.Preview.convertMarkdown(tab_contents.find('textarea').val());
       tab_contents.filter('#preview').html(html);
     }
 
@@ -34,7 +34,7 @@ Flow.Preview.init = function(){
 	});
 }
 
-Flow.Preview.buildPreviewTab = function(textarea){
+Stream.Preview.buildPreviewTab = function(textarea){
   // insert tabs
 	textarea.before(' \
 		<ul class="tabs"> \
@@ -53,10 +53,10 @@ Flow.Preview.buildPreviewTab = function(textarea){
 	textarea.parent().after('<div id="preview" class="tab_content description">Preview</div>');
 
 	// activate tab links
-	Flow.Preview.enableTabs(textarea);
+	Stream.Preview.enableTabs(textarea);
 }
 
-Flow.Preview.enableTabs = function(textarea) {
+Stream.Preview.enableTabs = function(textarea) {
 	var tabs = textarea.parents('.tab_container').prev('ul.tabs').find('li');
 	var tab_contents = textarea.parents('.tab_container').find('.tab_content');
 
@@ -67,7 +67,7 @@ Flow.Preview.enableTabs = function(textarea) {
 	tab_contents.first().show();
 }
 
-Flow.Preview.convertMarkdown = function(text) {
+Stream.Preview.convertMarkdown = function(text) {
 	var converter = new Showdown.converter();
 	return converter.makeHtml(text);
 }

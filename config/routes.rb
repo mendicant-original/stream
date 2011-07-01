@@ -1,4 +1,4 @@
-Flow::Application.routes.draw do
+Stream::Application.routes.draw do
   root :to => 'articles#index'
 
   match '/auth/:provider/callback' => 'sessions#create'

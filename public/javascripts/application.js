@@ -1,7 +1,7 @@
-// Setup the Flow [University Web] Namespace
-var Flow = Flow || new Object();
+// Setup the Stream Namespace
+var Stream = Stream || new Object();
 
-Flow.setupNamespace = function(namespace){
-	if(Flow[namespace] == undefined)
-		Flow[namespace] = {}
+Stream.setupNamespace = function(namespace){
+	if(Stream[namespace] == undefined)
+		Stream[namespace] = {}
 }
