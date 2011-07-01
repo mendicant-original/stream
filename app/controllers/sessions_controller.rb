@@ -30,7 +30,7 @@ class SessionsController < ApplicationController
     nick = @auth['user_info']['nickname']
     user = UniversityWeb::User.find_by_github(nick)
     alert = \
-      if user.github.nil? || user.error
+      if user.nil?
         "Your github account is not registered on University-web"
       elsif !user.alumnus && !user.staff
         "You are not authorized as a user on Flow"
