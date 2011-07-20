@@ -15,9 +15,9 @@ module UniversityWeb
     end
 
     def initialize(hash)
-      self.github  = hash[:github]
-      self.staff   = hash[:staff]
-      self.alumnus = hash[:alumnus]
+      self.github  = hash["github"]
+      self.staff   = hash["staff"]
+      self.alumnus = hash["alumnus"]
     end
 
     private
@@ -25,11 +25,10 @@ module UniversityWeb
     class << self
 
       def find(params = {})
-        return [ new(params.merge(:staff => true)) ] if Rails.env.development?
+        #return [ new(params.merge(:staff => true)) ] if Rails.env.development?
 
         resp = ::UniversityWeb.service[PATH].get :params => params
 
-        # TODO handle error response?
         parse(resp).map {|hash| new(hash)}
       end
 
