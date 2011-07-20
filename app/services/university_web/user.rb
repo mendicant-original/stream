@@ -25,7 +25,7 @@ module UniversityWeb
     class << self
 
       def find(params = {})
-        #return [ new(params.merge(:staff => true)) ] if Rails.env.development?
+        return [ new(params.merge("staff" => true)) ] if Rails.env.development?
 
         resp = ::UniversityWeb.service[PATH].get :params => params
 
