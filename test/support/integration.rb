@@ -74,7 +74,7 @@ module Support
     end
 
     def assert_image(src)
-      assert has_css?('img', :src => "/images/#{src}"), "Image /images/#{src} does not exist"
+      assert has_css?('img', :src => "/assets/#{src}"), "Image /assets/#{src} does not exist"
     end
 
     def click_link_within(scope, text)

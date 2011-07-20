@@ -1,10 +1,22 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.9'
+gem 'rails', '3.1.0.rc4'
 
-gem "compass"
-gem "haml-rails"
+# Rails 3.1 - Asset Pipeline
+gem 'json'
+gem 'sass'
+gem 'coffee-script'
+gem 'uglifier'
+
+# Rails 3.1 - Javascript
+
 gem "jquery-rails"
+
+# Rails 3.1 - Compass
+
+gem 'compass', :require => false
+
+gem "haml-rails"
 gem "omniauth", '~> 0.2.5'
 gem "pg"
 gem "rdiscount"
